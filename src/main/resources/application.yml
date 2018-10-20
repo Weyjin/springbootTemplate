@@ -1,0 +1,39 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: utf-8
+spring:
+    application:
+      name: demo # 应用名称
+    profiles:
+      active: dve #指定当前的活动配置文件，主要用于多环境多配置文件的应用中
+    datasource:
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/moviesdb
+        username: root
+        password: 12345678
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+
+
+    #mvc:
+     # view:
+      #  prefix: /
+       # suffix: .html
+    thymeleaf:
+      suffix: .html
+      cache: false
+      check-template-location: true
+      enabled: true
+      mode: HTML5
+      prefix: classpath:/templates/
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.springboot.entity
+
+# 打印sql
+#logging:
+ # level:
+  #  com.springboot: trace

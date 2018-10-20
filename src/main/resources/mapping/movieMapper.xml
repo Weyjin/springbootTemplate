@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.dao.IMovieDao" >
+
+    <resultMap id="baseResult" type="com.springboot.entity.Movie" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="create_time" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="show_time" property="showDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column">
+        id,name,create_time
+    </sql>
+
+    <select id="toList" resultMap="baseResult">
+        SELECT * FROM `movie`
+    </select>
+
+    <insert id="insert" parameterType="com.springboot.entity.Movie">
+        insert into `movie`(id,name,create_time) values(#{id},#{name},#{createDate})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM `movie` WHERE id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.springboot.entity.Movie">
+        UPDATE `movie` SET name=#{name},create_time=#{createDate}
+        WHERE id=#{id}
+    </update>
+    
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="baseResult">
+        SELECT * FROM `sys_user` WHERE id=#{id}
+    </select>
+</mapper>
